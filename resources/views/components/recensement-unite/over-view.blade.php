@@ -31,10 +31,12 @@
         <div class="table-section">
             <div class="table-header">
                 <h3>Enregistrements</h3>
+                @if(Auth::user()->isAdmin())
                 <div class="buttons">
                     <button class="export-btn">Exporter</button>
                     <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
                 </div>
+                 @endif
             </div>
 
             <table>

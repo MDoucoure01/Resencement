@@ -19,10 +19,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::post("store/user",[UserController::class,"store"])->name("user.create");
 
-Route::get("",[AuthController::class,"loginView"])->name("login.page");
-Route::get("/user/create",[UserController::class,"createView"])->name("create.page");
-Route::get("/user/index",[UserController::class,"index"])->name("index.page");
+Route::get("login",[AuthController::class,"loginView"])->name("login.page");
 Route::post("user/login",[AuthController::class,"login"])->name("connect.page");
-Route::delete('/clients/{client}', [UserController::class, 'destroy'])->name('clients.destroy');
+Route::group(['middleware' => ['auth:web']], function ($router) {
+    Route::post("store/user",[UserController::class,"store"])->name("user.create");
+    Route::get("/user/create",[UserController::class,"createView"])->name("create.page");
+    Route::get("/user/index",[UserController::class,"index"])->name("index.page");
+    Route::delete('/clients/{client}', [UserController::class, 'destroy'])->name('clients.destroy');
+ });
+
+
+
+
