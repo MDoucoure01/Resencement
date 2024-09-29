@@ -15,6 +15,7 @@
     <x-recensement-unite.nav-bar></x-recensement-unite.nav-bar>
     @endif
     {{$slot}}
+    @stack('scripts')
 </body>
 
 </html>

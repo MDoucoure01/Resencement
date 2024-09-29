@@ -39,3 +39,148 @@
     background-color: #cfcfcf;
     border-radius: 100%;
 }
+
+
+/* Follow me for more pens like this! */
+
+/* Main dropdown container */
+.dropdown {
+    position: relative;
+    margin-right: 1em;
+}
+
+.dropdown summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    margin: 10px 0 0;
+    padding: 10px;
+    background: var(--dropdown-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    z-index: 1000;
+}
+
+.dropdown ul li {
+    margin: 10px 0;
+}
+
+.dropdown ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: var(--dropdown-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dropdown ul li a:hover {
+    background-color: #f0f0f0;
+    border-radius: 6px;
+}
+
+.dropdown ul .user-info {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    text-align: left;
+}
+
+.user-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-details strong {
+    font-size: 16px;
+    color: #333;
+}
+
+.user-details span {
+    font-size: 12px;
+    color: #777;
+}
+
+.icon img {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+
+.icon {
+    font-size: 2px;
+    margin-right: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 10px 0;
+}
+
+/* Dropdown triangle */
+.dropdown ul::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--dropdown-background) transparent;
+}
+
+/* Close the dropdown with outside clicks */
+.dropdown[open] > summary::before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.dropdown ul {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    margin: 10px 0 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    z-index: 1000;
+}
+
+
+.dropdown ul::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    border-width: 0 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent; /* Solid white background */
+}
+
