@@ -91,5 +91,72 @@
             </table>
         </div>
 
+        <div id="userModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Détails de l'utilisateur</h2>
+                <p><strong>Nom Complet:</strong> <span id="modalUserName"></span></p>
+                <p><strong>Sexe:</strong> <span id="modalUserGender"></span></p>
+                <p><strong>Numéro Carte:</strong> <span id="modalUserIdCard"></span></p>
+                <p><strong>Téléphone:</strong> <span id="modalUserPhone"></span></p>
+            </div>
+        </div>
+
+
     </div>
+
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('table tbody tr');
+
+            const modal = document.getElementById('userModal');
+            const closeModal = document.querySelector('.modal .close');
+            const modalUserName = document.getElementById('modalUserName');
+            const modalUserGender = document.getElementById('modalUserGender');
+            const modalUserIdCard = document.getElementById('modalUserIdCard');
+            const modalUserPhone = document.getElementById('modalUserPhone');
+
+            function showModal(user) {
+                modalUserName.textContent = user.name;
+                modalUserGender.textContent = user.gender;
+                modalUserIdCard.textContent = user.idCard;
+                modalUserPhone.textContent = user.phone;
+
+                modal.style.display = 'block';
+            }
+
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const userName = row.querySelector('td:nth-child(1)').textContent;
+                    const userGender = row.querySelector('td:nth-child(2)').textContent;
+                    const userIdCard = row.querySelector('td:nth-child(3)').textContent;
+                    const userPhone = row.querySelector('td:nth-child(4)').textContent;
+
+                    const user = {
+                        name: userName,
+                        gender: userGender,
+                        idCard: userIdCard,
+                        phone: userPhone
+                    };
+
+                    showModal(user);
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    @endpush
+
+
 </x-recensement-unite.layout>
