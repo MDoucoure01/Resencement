@@ -3,32 +3,30 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClientsExport;
 
 
-Route::get("login",[AuthController::class,"loginView"])->name("login.page");
-Route::post("user/login",[AuthController::class,"login"])->name("connect.page");
-Route::group(['middleware' => ['auth:web']], function ($router) {
-    Route::post("store/user",[UserController::class,"store"])->name("user.create");
-    Route::get("/user/create",[UserController::class,"createView"])->name("create.page");
-    Route::get("/user/index",[UserController::class,"index"])->name("index.page");
+Route::get("login", [AuthController::class, "loginView"])
+    ->name("login.page")
+    ->middleware('guest');
+
+Route::post("user/login", [AuthController::class, "login"])->name("connect.page");
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post("store/user", [UserController::class, "store"])->name("user.create");
+    Route::get("/user/create", [UserController::class, "createView"])->name("create.page");
+    Route::get("/user/index", [UserController::class, "index"])->name("index.page");
     Route::delete('/clients/{client}', [UserController::class, 'destroy'])->name('clients.destroy');
- });
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/clients/export', function () {
+        return Excel::download(new ClientsExport, 'clients.xlsx');
+    })->name('clients.export');
+});
 
-
-
-
+Route::fallback(function () {
+    if (auth()->check()) {
+        return redirect()->route('index.page');
+    }
+    return redirect()->route('login.page');
+});

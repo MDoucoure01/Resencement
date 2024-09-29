@@ -10,6 +10,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 20%;
     text-align: center;
+    position: relative;
 }
 
 .login-page img {
@@ -31,7 +32,7 @@
 }
 
 .login-container button {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     background-color: #0157A4;
     color: white;
@@ -57,7 +58,7 @@
     padding: 4px 8px !important;
     text-align: center !important;
     border-radius: 5px !important;
-   
+
   }
 
 
@@ -65,4 +66,47 @@
     border: 0.1em solid red !important;
     color: red !important;
     background-color: white !important;
-}   
+}
+
+.bandeBlue{
+    width: 110%;
+    height: 5px;
+    background-color: #0059A1;
+    position: relative;
+    top: -5.85%;
+    right: 5%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.input {
+    max-width: 344.5px;
+    height: 20px;
+    background-color: #05060f0a;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
+}
+
+.label {
+    display: block;
+    margin-bottom: .3rem;
+    font-size: .9rem;
+    font-weight: bold;
+    color: #05060f99;
+    transition: color .3s cubic-bezier(.25, .01, .25, 1) 0s;
+}
+
+.input:hover,
+.input:focus,
+.input-group:hover .input {
+    outline: none;
+    border-color: #05060f;
+}
+
+.input-group:hover .label,
+.input:focus {
+    color: #05060fc2;
+}

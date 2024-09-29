@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -126,6 +127,12 @@ class UserController extends Controller
 
     public function createView()
     {
-        return view("components.recensement-unite.create");
+
+        if(Auth::user()->role == 'admin') {
+            return view("components.recensement-unite.create");
+        }
+        return back()->withErrors([
+            'error' => 'Page no found',
+        ]);
     }
 }

@@ -11,20 +11,35 @@
         <div class="header">
             <div class="card total cardstat">
                 <div class="stat">
-                    <div>Total</div>
-                    <div class="number">{{$totalClientsFormatted}}</div>
+                    <div style="display: flex;justify-content:start;color:#099346">Total</div>
+                    <div>enregistrement</div>
                 </div>
-                <div>enregistrement</div>
+                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$totalClientsFormatted}}</div>
             </div>
-            <div class="card male">
+            <!-- <div class="card male">
                 <span>Homme</span>
                 <h1>{{$menCountFormatted}}</h1>
                 <p>{{$menPercentageFormatted}}%</p>
+            </div> -->
+            <div class="card total cardstat">
+                <div class="stat">
+                    <div style="display: flex;justify-content:start;color:#099346">Homme</div>
+                    <div>{{$menPercentageFormatted}}%</div>
+                </div>
+                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$menCountFormatted}}</div>
             </div>
-            <div class="card female">
+            <!-- <div class="card female">
                 <span>Femme</span>
                 <h1>{{$womenCountFormatted}}</h1>
                 <p>{{$womenPercentageFormatted}}%</p>
+            </div> -->
+
+            <div class="card total cardstat">
+                <div class="stat">
+                    <div style="display: flex;justify-content:start;color:#099346">Femme</div>
+                    <div>{{$womenPercentageFormatted}}%</div>
+                </div>
+                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$womenCountFormatted}}</div>
             </div>
         </div>
 
@@ -32,11 +47,16 @@
             <div class="table-header">
                 <h3>Enregistrements</h3>
                 @if(Auth::user()->isAdmin())
-                <div class="buttons">
+                <!-- <div class="buttons">
                     <button class="export-btn">Exporter</button>
                     <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
+                </div> -->
+                <div class="buttons">
+                    <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a>
+                    <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
                 </div>
-                 @endif
+
+                @endif
             </div>
 
             <table>
@@ -70,5 +90,6 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 </x-recensement-unite.layout>

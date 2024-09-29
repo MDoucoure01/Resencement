@@ -27,6 +27,12 @@ class AuthController extends Controller
         return back()->withErrors([
             'error' => 'Email ou mot de passe invalide'
         ]);
-        
+
     }
+
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+    } 
 }
