@@ -1,0 +1,41 @@
+.content {
+    position: absolute;
+    width: 96.6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0.1 2px 4px #FFFFFF;
+    top: 0;
+}
+
+.content img {
+    width: 50px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .logo-text {
+    color: #0CAF4F;
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.content .user-name {
+    font-size: 16px;
+    background-color: #E5F5EA;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #333;
+}
+
+.iconReturn{
+    background-color: #cfcfcf;
+    border-radius: 100%;
+}

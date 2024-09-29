@@ -1,0 +1,176 @@
+/* General Styles */
+
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 75%;
+    height: 80%;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title h2 {
+    font-size: 24px;
+    color: #0059A1;
+}
+
+/* Statistics Cards */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header .card {
+    width: 24%;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #333;
+}
+
+.header span {
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+.header p {
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.total h1 {
+    color: #333;
+}
+
+.male h1 {
+    color: #0B9447;
+}
+
+.female h1 {
+    color: #0059A1;
+}
+
+/* Table Section */
+.table-section {
+    margin-top: 20px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #0059A1;
+}
+
+.buttons button,
+.buttons a {
+    margin-left: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.export-btn {
+    background-color: #333;
+    color: white;
+}
+
+.new-btn {
+    background-color: #0059A1;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: #F7F7F7;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+}
+
+table th {
+    color: #333;
+    font-size: 14px;
+}
+
+table td {
+    color: #777;
+    font-size: 14px;
+}
+
+.gender {
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.gender.male {
+    background-color: #0B9447;
+}
+
+.gender.female {
+    background-color: #0059A1;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.delete-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.cardstat {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+}
