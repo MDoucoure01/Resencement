@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         try {
             return DB::transaction(function () {
-                $users = Client::all();
+                $users = Client::orderBy('id', 'desc')->get(); //Client::all();
                 $totalClients = $users->count();
                 $menCount = $users->where('gender', 'Homme')->count();
                 $womenCount = $users->where('gender', 'Femme')->count();
@@ -66,6 +66,12 @@ class UserController extends Controller
                     'error' => " Le numéro de la carte existe deja.",
                 ]);
             }
+            $phone = Client::where("phone", $request->get('phone'))->first();
+            if ($phone) {
+                return back()->withErrors([
+                    'error' => " Le numéro de téléphone existe deja. :" . $request->get("phone"),
+                ]);
+            }
             if (!in_array($request->get("gender"), ['Homme', 'Femme'])) {
                 return back()->withErrors([
                     'error' => " Le genre fournie n'est pas conforme.",
@@ -78,13 +84,14 @@ class UserController extends Controller
                 "phone" => $request->get('phone'),
                 "address" => $request->get('address'),
                 "id_card_number" => $request->get('id_card_number'),
+                "department" => $request->get('departement') ?? null,
             ]);
             return back()->with([
                 'success' => "insertion reussi"
             ]);
         } catch (\Throwable $th) {
             return back()->withErrors([
-                'error' => 'Une erreur est survenue : ' . $th->getMessage(),
+                'error' => 'Une erreur est survenue : ',
             ]);
         }
     }
@@ -128,7 +135,7 @@ class UserController extends Controller
     public function createView()
     {
 
-        if(Auth::user()->role == 'admin') {
+        if (Auth::user()->role == 'admin') {
             return view("components.recensement-unite.create");
         }
         return back()->withErrors([
