@@ -1,5 +1,6 @@
 .content {
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     width: 97%;
     display: flex;
     justify-content: space-between;
