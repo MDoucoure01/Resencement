@@ -5,13 +5,18 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 825px;
-    height: 430px;
+    height: 95%;
 }
 
 .container h2 {
     text-align: right;
     color: #333;
     margin-bottom: 30px;
+}
+
+form{
+    position: relative;
+    top: 10%;
 }
 
 .form-group {
@@ -47,8 +52,6 @@
 .submit-container {
     text-align: center;
     margin-top: 20px;
-    position: relative;
-    top: 70px;
 }
 
 .submit-container button {
@@ -129,4 +132,15 @@
 .input-group:hover .label,
 .input:focus {
     color: #05060fc2;
+}
+
+.input-datalist {
+    max-width: 93%;
+    height: 20px;
+    background-color: #05060f0a;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25, .01, .25, 1) 0s, color .3s cubic-bezier(.25, .01, .25, 1) 0s, background .2s cubic-bezier(.25, .01, .25, 1) 0s;
 }

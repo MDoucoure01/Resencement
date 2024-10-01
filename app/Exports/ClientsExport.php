@@ -3,10 +3,13 @@
 namespace App\Exports;
 
 use App\Models\Client;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ClientsExport implements FromCollection
+class ClientsExport implements FromCollection, WithHeadings
 {
+    use Exportable;
     /**
      * @return \Illuminate\Support\Collection
      */
@@ -22,7 +25,7 @@ class ClientsExport implements FromCollection
             'Nom',
             'Prénom',
             'Téléphone',
-            'Numéro Carte', 
+            'Numéro Carte',
         ];
     }
 }

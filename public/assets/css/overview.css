@@ -4,9 +4,7 @@
 .container {
     margin: 20px auto;
     padding: 20px;
-    background-color: #FAFAFA;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 75%;
     height: 80%;
 }
@@ -69,7 +67,10 @@
 
 /* Table Section */
 .table-section {
-    margin-top: 20px;
+    margin-top: 25px;
+    padding: 15px;
+    background: #FFF;
+    height: 575px;
 }
 
 .table-header {
@@ -211,4 +212,28 @@ table td {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.table-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.table-container {
+    overflow: auto;
+    scrollbar-color: #0059A1 transparent;
+    /* Firefox */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #0059A1;
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #0059A1;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
