@@ -4,7 +4,9 @@
 
 <div class="content">
     <div class="logo">
-        <img src="{{ asset('assets/images/Assets-UNITE/logo.png') }}" alt="Logo">
+        <a href="{{ route('index.page') }}">
+            <img src="{{ asset('assets/images/Assets-UNITE/logo.png') }}" alt="Logo">
+        </a>
         <span class="logo-text">UNITÉ</span>
     </div>
 
