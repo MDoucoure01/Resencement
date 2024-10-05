@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/create2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nav-bar.css') }}">
     @endpush
-    <div>
+    <div style="margin-top: 60px;">
         <div class="entete">
             <div class="back-link">
                 <a href="{{ route('index.page') }}"><span class="iconReturn">&#8592;</span> Retour à l'accueil</a>
