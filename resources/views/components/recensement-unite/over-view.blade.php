@@ -1,6 +1,6 @@
 <x-recensement-unite.layout>
     @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/overview.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/overview2.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nav-bar.css') }}">
     @endpush
     <div class="page-title">
