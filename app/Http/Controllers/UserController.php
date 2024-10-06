@@ -107,9 +107,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        // Trouver l'utilisateur et mettre à jour ses informations
+        $user = Client::find($id);
+        $user->update([
+            'last_name' => $request->input('last_name'),
+            'first_name' => $request->input('first_name'),
+            'gender' => $request->input('gender'),
+            'phone' => $request->input('phone'),
+            'address' => $request->input('address'),
+            'id_card_number' => $request->input('id_card_number'),
+            'departement' => $request->input('departement'),
+        ]);
+
+        // Rediriger vers une page (par exemple la liste des utilisateurs) après la mise à jour
+        return redirect()->route('index.page')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     /**
@@ -141,5 +154,26 @@ class UserController extends Controller
         return back()->withErrors([
             'error' => 'Page no found',
         ]);
+    }
+
+    public function ReturEditView(){
+    }
+
+    public function edit($id)
+    {
+        if (Auth::user()->role == 'admin') {
+            $user = Client::find($id);
+            if ($user) {
+                return view("components.recensement-unite.edit-view", compact('user'));
+            }
+            return back()->withErrors([
+                'error' => 'Page no found',
+            ]);
+        }
+        return back()->withErrors([
+            'error' => 'Page no found',
+        ]);
+        // dd();
+        // return view('components.recensement-unite.edit-view', compact('user'));
     }
 }

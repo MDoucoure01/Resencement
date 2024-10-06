@@ -22,6 +22,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/clients/export', function () {
         return Excel::download(new ClientsExport, 'clients.xlsx');
     })->name('clients.export');
+    // Route::get('users/{id}/edit',[UserController::class, "ReturEditView"])->name("users.edit");
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 });
 
 Route::fallback(function () {

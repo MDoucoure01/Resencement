@@ -22,6 +22,7 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'departement' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'gender' => 'required|in:Homme,Femme',
@@ -34,6 +35,7 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
+            'departement.required' => 'Le prénom est requis.',
             'first_name.required' => 'Le prénom est requis.',
             'last_name.required' => 'Le nom de famille est requis.',
             'gender.required' => 'Le genre est requis.',
