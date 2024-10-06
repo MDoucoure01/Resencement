@@ -36,6 +36,24 @@
         <div class="table-section ">
             <div class="table-header">
                 <h3>Enregistrements</h3>
+                <form class="form">
+                    <label for="search">
+                        <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
+                        <div class="icon">
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <!-- <button type="reset" class="close-btn">
+                            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+                            </svg>
+                        </button> -->
+                    </label>
+                </form>
                 @if(Auth::user()->isAdmin())
                 <div class="buttons">
                     <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a>
@@ -52,7 +70,7 @@
                             <th>Sexe</th>
                             <th>Numéro Carte</th>
                             <th>Téléphone</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +87,7 @@
                             <td>{{ $user->phone }}</td>
                             <td hidden> {{ $user->address }}</td>
                             <td hidden> {{ $user->department }}</td>
-                            <td>
+                            <td style="display: flex;">
                                 <form action="{{ route('clients.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
                                     @csrf
                                     @method('DELETE')
@@ -77,6 +95,9 @@
                                         <img src="{{ asset('assets/images/Assets-UNITE/ico-trash.svg') }}" alt="Delete">
                                     </button>
                                 </form>
+                                <a style="margin-left: 20px;" href="{{ route('users.edit', $user->id) }}" class="edit-btn">
+                                    <img src="{{ asset('assets/images/Assets-UNITE/ico-edit.svg') }}" alt="Edit"
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -159,9 +180,15 @@
                 });
 
                 const deleteBtn = row.querySelector('.delete-btn');
+                const editBtn = row.querySelector('.edit-btn');
 
                 if (deleteBtn) {
                     deleteBtn.addEventListener('click', function(event) {
+                        event.stopPropagation();
+                    });
+                }
+                if (editBtn) {
+                    editBtn.addEventListener('click', function(event) {
                         event.stopPropagation();
                     });
                 }
@@ -175,6 +202,27 @@
                 if (event.target == modal) {
                     modal.style.display = 'none';
                 }
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const rows = document.querySelectorAll('table tbody tr');
+
+            searchInput.addEventListener('keyup', function() {
+                const searchValue = searchInput.value.toLowerCase();
+
+                rows.forEach(row => {
+                    const fullName = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                    const idCard = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+
+                    if (fullName.includes(searchValue) || idCard.includes(searchValue)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             });
         });
     </script>
