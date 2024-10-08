@@ -30,7 +30,7 @@
             </li>
             <hr>
             <li>
-                <a href="{{ route('create.page') }}">
+                <a href="{{ route('userList.page') }}">
                     <span class="icon"><img src="{{ asset('assets/images/Assets-UNITE/ico-user.svg') }}" alt="Delete"></span>
                     Gestion User
                 </a>
