@@ -4,38 +4,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nav-bar.css') }}">
     @endpush
     <div class="page-title">
-        <h2>Vue D'ensemble</h2>
+        <h2>Vue Utilisateur</h2>
     </div>
     <div class="container">
-        <div class="header">
-            <div class="card total cardstat">
-                <div class="stat">
-                    <div style="display: flex;justify-content:start;color:#099346">Total</div>
-                    <div>enregistrement</div>
-                </div>
-                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$totalClientsFormatted}}</div>
-            </div>
-
-            <div class="card total cardstat">
-                <div class="stat">
-                    <div style="display: flex;justify-content:start;color:#099346">Homme</div>
-                    <div>{{$menPercentageFormatted}}%</div>
-                </div>
-                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$menCountFormatted}}</div>
-            </div>
-
-            <div class="card total cardstat">
-                <div class="stat">
-                    <div style="display: flex;justify-content:start;color:#099346">Femme</div>
-                    <div>{{$womenPercentageFormatted}}%</div>
-                </div>
-                <div class="number" style="font-size:3em;color: #333333;font-weight:bold">{{$womenCountFormatted}}</div>
-            </div>
-        </div>
 
         <div class="table-section ">
             <div class="table-header">
-                <h3>Enregistrements</h3>
+                <h3>0{{ $totalClients }} Enregistrements</h3>
                 <form class="form">
                     <label for="search">
                         <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
@@ -47,17 +22,12 @@
                                 <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
                             </svg>
                         </div>
-                        <!-- <button type="reset" class="close-btn">
-                            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
-                                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
-                            </svg>
-                        </button> -->
                     </label>
                 </form>
                 @if(Auth::user()->isAdmin())
                 <div class="buttons">
-                    <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a>
-                    <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
+                    <!-- <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a> -->
+                    <a class="new-btn" href="{{ route('addUser.page') }}">Nouvelle</a>
                 </div>
                 @endif
             </div>
@@ -68,9 +38,9 @@
                         <tr>
                             <th>Nom Complet</th>
                             <th>Sexe</th>
-                            <th>NIN</th>
-                            <th>Téléphone</th>
                             <th>Numéro Carte</th>
+                            <th>Téléphone</th>
+                            <th>Role</th>
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -86,20 +56,17 @@
                             @endif
                             <td>{{ $user->id_card_number }}</td>
                             <td>{{ $user->phone }}</td>
+
                             <td hidden> {{ $user->address }}</td>
-                            <td hidden> {{ $user->department }}</td>
-                            <td>{{ $user->card_number}}</td>
+                            <td><span class="" style="background-color:#0b944649;padding:4px;border-radius:3px;">{{ $user->role }}</span></td>
                             <td style="display: flex;">
-                                <form action="{{ route('clients.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce utlisateur ?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-btn">
                                         <img src="{{ asset('assets/images/Assets-UNITE/ico-trash.svg') }}" alt="Delete">
                                     </button>
                                 </form>
-                                <a style="margin-left: 20px;" href="{{ route('users.edit', $user->id) }}" class="edit-btn">
-                                    <img src="{{ asset('assets/images/Assets-UNITE/ico-edit.svg') }}" alt="Edit"
-                                        </a>
                             </td>
                         </tr>
                         @endforeach
@@ -113,11 +80,9 @@
                 <span class="close">&times;</span>
                 <h2 id="modalUserName"></h2>
                 <span id="modalUserGender"></span>
-                <p><strong>NIN:</strong> <span id="modalUserIdCard"></span></p>
+                <p><strong>Numéro Carte:</strong> <span id="modalUserIdCard"></span></p>
                 <p><strong>Téléphone:</strong> <span id="modalUserPhone"></span></p>
                 <p><strong>Adresse:</strong> <span id="modalUserAddress"></span></p>
-                <p><strong>Departement:</strong> <span id="modalUserDepartement"></span></p>
-                <p><strong>Numéro Carte:</strong> <span id="modalUserCardNumber"></span></p>
             </div>
         </div>
 
@@ -137,8 +102,6 @@
             const modalUserIdCard = document.getElementById('modalUserIdCard');
             const modalUserPhone = document.getElementById('modalUserPhone');
             const modalUserAddress = document.getElementById('modalUserAddress');
-            const modalUserDepartement = document.getElementById('modalUserDepartement');
-            const modalUserCardNumber = document.getElementById('modalUserCardNumber');
 
             function showModal(user) {
                 modalUserName.textContent = user.name;
@@ -146,8 +109,6 @@
                 modalUserIdCard.textContent = user.idCard;
                 modalUserPhone.textContent = user.phone;
                 modalUserAddress.textContent = user.address;
-                modalUserDepartement.textContent = user.departement;
-                modalUserCardNumber.textContent = user.card
 
                 if (user.gender === 'Homme') {
                     modalUserGender.textContent = user.gender;
@@ -170,8 +131,6 @@
                     const userIdCard = row.querySelector('td:nth-child(3)').textContent;
                     const userPhone = row.querySelector('td:nth-child(4)').textContent;
                     const userAddress = row.querySelector('td:nth-child(5)').textContent;
-                    const userDepartement = row.querySelector('td:nth-child(6)').textContent;
-                    const userCard = row.querySelector('td:nth-child(7)').textContent;
 
                     const user = {
                         name: userName,
@@ -179,8 +138,6 @@
                         idCard: userIdCard,
                         phone: userPhone,
                         address: userAddress,
-                        departement: userDepartement,
-                        card: userCard,
                     };
 
                     showModal(user);

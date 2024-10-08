@@ -77,7 +77,7 @@
                         <input type="text" id="id_card_number" name="id_card_number" placeholder="XDF654648516">
                     </div> -->
                     <div class="input-group" style="flex: 1; margin-left: 10px;">
-                        <label for="address" class="label">Numéro de la carte</label>
+                        <label for="address" class="label">Numéro Carte d'identité</label>
                         <input autocomplete="off" name="id_card_number" id="id_card_number" class="input" type="text" placeholder="XDF654648516" required>
                         <div></div>
                     </div>
@@ -137,6 +137,11 @@
                             <option value="Foundiougne">Foundiougne</option>
                             <option value="Other">Other</option>
                         </datalist>
+                    </div>
+                    <div class="input-group" style="flex: 1; margin-left: 10px;">
+                        <label for="card_number" class="label">Numéro carte</label>
+                        <input autocomplete="off" name="card_number" id="card_number" class="input" type="text" placeholder="OO1" required>
+                        <div></div>
                     </div>
                 </div>
 

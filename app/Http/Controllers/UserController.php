@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminSupervisorRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Client;
 use App\Models\User;
@@ -48,6 +49,25 @@ class UserController extends Controller
     }
 
 
+    public function Userlist()
+    {
+        try {
+            return DB::transaction(function () {
+                $users = User::orderBy('id', 'desc')->get();
+                $totalClients = $users->count();
+                return view("components.recensement-unite.user-list", compact(
+                    'users',
+                    'totalClients'
+                ));
+            });
+        } catch (\Throwable $th) {
+            return back()->withErrors([
+                'error' => 'Une erreur est survenue : ' . $th->getMessage(),
+            ]);
+        }
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -61,6 +81,12 @@ class UserController extends Controller
                 ]);
             }
             $cartId = Client::where("id_card_number", $request->get('id_card_number'))->first();
+            if ($cartId) {
+                return back()->withErrors([
+                    'error' => " Le numéro de la carte d'identité existe deja.",
+                ]);
+            }
+            $cartId = Client::where("card_number", $request->get('card_number'))->first();
             if ($cartId) {
                 return back()->withErrors([
                     'error' => " Le numéro de la carte existe deja.",
@@ -85,6 +111,59 @@ class UserController extends Controller
                 "address" => $request->get('address'),
                 "id_card_number" => $request->get('id_card_number'),
                 "department" => $request->get('departement') ?? null,
+                "card_number" => $request->get("card_number") ?? null,
+            ]);
+            return back()->with([
+                'success' => "insertion reussi"
+            ]);
+        } catch (\Throwable $th) {
+            return back()->withErrors([
+                'error' => 'Une erreur est survenue : ',
+            ]);
+        }
+    }
+
+
+    public function UserAdd(StoreAdminSupervisorRequest $request)
+    {
+        try {
+            $phone = preg_replace('/\s+/', '', $request->get('phone'));
+            if (!in_array(strlen($phone), [9, 11, 14])) {
+                return back()->withErrors([
+                    'error' => " Le numéro de téléphone doit comporter 9, 11 ou 14 chiffres.",
+                ]);
+            }
+            $cartId = User::where("id_card_number", $request->get('id_card_number'))->first();
+            if ($cartId) {
+                return back()->withErrors([
+                    'error' => " Le numéro de la carte existe deja.",
+                ]);
+            }
+            $phone = User::where("phone", $request->get('phone'))->first();
+            if ($phone) {
+                return back()->withErrors([
+                    'error' => " Le numéro de téléphone existe deja. :" . $request->get("phone"),
+                ]);
+            }
+            if (!in_array($request->get("gender"), ['Homme', 'Femme'])) {
+                return back()->withErrors([
+                    'error' => " Le genre fournie n'est pas conforme.",
+                ]);
+            }
+            if ($request->get('password') !== $request->get('password_confirmation')) {
+                return back()->withErrors(['password' => 'Les mots de passe ne correspondent pas.']);
+            }
+
+            $user = User::create([
+                "first_name" => $request->get('first_name'),
+                "last_name" => $request->get("last_name"),
+                "gender" => $request->get('gender'),
+                "phone" => $request->get('phone'),
+                "address" => $request->get('address'),
+                "id_card_number" => $request->get('id_card_number'),
+                "email" => $request->get('email'),
+                "role" => $request->get('role'),
+                "password" => $request->get('password'),
             ]);
             return back()->with([
                 'success' => "insertion reussi"
@@ -109,7 +188,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Trouver l'utilisateur et mettre à jour ses informations
         $user = Client::find($id);
         $user->update([
             'last_name' => $request->input('last_name'),
@@ -121,7 +199,6 @@ class UserController extends Controller
             'departement' => $request->input('departement'),
         ]);
 
-        // Rediriger vers une page (par exemple la liste des utilisateurs) après la mise à jour
         return redirect()->route('index.page')->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
@@ -133,6 +210,22 @@ class UserController extends Controller
         try {
             return DB::transaction(function () use ($client) {
                 $client->delete();
+                return back()->with([
+                    'success' => "Le client a été supprimé avec succès."
+                ]);
+            });
+        } catch (\Throwable $th) {
+            return back()->withErrors([
+                'error' => "Une erreur est survenue lors de la suppression : " . $th->getMessage(),
+            ]);
+        }
+    }
+
+    public function deleteUser(User $user)
+    {
+        try {
+            return DB::transaction(function () use ($user) {
+                $user->delete();
                 return back()->with([
                     'success' => "Le client a été supprimé avec succès."
                 ]);
@@ -156,8 +249,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function ReturEditView(){
-    }
+    public function ReturEditView() {}
 
     public function edit($id)
     {
@@ -175,5 +267,16 @@ class UserController extends Controller
         ]);
         // dd();
         // return view('components.recensement-unite.edit-view', compact('user'));
+    }
+
+
+    public function CreateUser()
+    {
+        if (Auth::user()->role == 'admin') {
+            return view("components.recensement-unite.user-add");
+        }
+        return back()->withErrors([
+            'error' => 'Page no found',
+        ]);
     }
 }

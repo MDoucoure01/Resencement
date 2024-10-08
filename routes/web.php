@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/user/create", [UserController::class, "createView"])->name("create.page");
     Route::get("/user/index", [UserController::class, "index"])->name("index.page");
     Route::delete('/clients/{client}', [UserController::class, 'destroy'])->name('clients.destroy');
+    Route::delete('/user/{user}', [UserController::class, 'deleteUser'])->name('users.destroy');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/clients/export', function () {
         return Excel::download(new ClientsExport, 'clients.xlsx');
@@ -25,6 +26,10 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('users/{id}/edit',[UserController::class, "ReturEditView"])->name("users.edit");
     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::get("/user/list", [UserController::class, "Userlist"])->name("userList.page");
+    Route::post("/admin/add/user", [UserController::class, "UserAdd"])->name("userAdd.page");
+    Route::get("/admin/user/add", [UserController::class, "CreateUser"])->name("addUser.page");
+
 });
 
 Route::fallback(function () {
