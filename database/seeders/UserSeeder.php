@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
                 'first_name' => 'Ghost',
                 'last_name' => 'Ghost',
                 'gender' => 'Homme',
-                'phone' => '987654321',
+                'phone' => '780000000',
                 'address' => '456 Supervisor St',
                 'id_card_number' => 0000000000,
                 'role' => 'supervisor',
