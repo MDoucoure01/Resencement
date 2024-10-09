@@ -80,12 +80,12 @@
 
                 <div class="form-group">
                     <div class="input-group" style="flex: 1; margin-left: 6px;">
-                        <label for="password" class="label">Adresse</label>
+                        <label for="password" class="label">Password</label>
                         <input autocomplete="off" name="password" id="password" class="input" type="password" placeholder="" required>
                         <div></div>
                     </div>
                     <div class="input-group" style="flex: 1; margin-left: 10px;">
-                        <label for="password_confirmation" class="label">Confirme Password</label>
+                        <label for="password_confirmation" class="label">Confirmation Password</label>
                         <input autocomplete="off" name="password_confirmation" id="password_confirmation" class="input" type="password" placeholder="" required>
                         <div></div>
                     </div>
