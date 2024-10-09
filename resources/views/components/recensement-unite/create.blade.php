@@ -20,28 +20,39 @@
                 @endforeach
             </div>
             @endif
+            @if (session('success'))
+            <div style="color: green; margin-bottom: 10px;margin-bottom: 10px;padding: 15px;background-color: #DFDF;width: 40%;min-width: 200px;">
+                {{ session('success') }}
+            </div>
+            @endif
+
             <form method="POST" action="{{route('user.create')}}">
                 @csrf
+
                 <div class="form-group">
-                    <!-- <div style="flex: 1; margin-right: 10px;">
-                        <label for="last_name">Nom</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="@exemple">
-                    </div> -->
+                    <div class="input-group" style="flex: 1; margin-left: 10px;">
+                        <label for="card_number" class="label">Numéro carte Membre</label>
+                        <input autocomplete="off" name="card_number" id="card_number" class="input" type="text" placeholder="OO1" required>
+                        <div></div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
                     <div class="input-group" style="flex: 1; margin-right: 10px;">
                         <label class="label">Nom</label>
                         <input autocomplete="off" name="last_name" id="last_name" class="input" type="text" placeholder="Ndiaye" required>
                         <div></div>
                     </div>
-                    <!-- <div style="flex: 1; margin-left: 10px;">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="Fallou">
-                    </div> -->
+
                     <div class="input-group" style="flex: 1; margin-left: 10px;">
                         <label class="label">Prénom</label>
                         <input autocomplete="off" name="first_name" id="first_name" class="input" type="text" placeholder="Fallou" required>
                         <div></div>
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <div style="flex: 1; margin-right: 8px;">
@@ -51,10 +62,7 @@
                             <option value="Femme">Femme</option>
                         </select>
                     </div>
-                    <!-- <div style="flex: 1; margin-left: 10px;">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="">
-                    </div> -->
+
                     <div class="input-group" style="flex: 1; margin-left: 10px;">
                         <label class="label">Téléphone</label>
                         <input autocomplete="off" name="phone" id="phone" class="input" type="tel" placeholder="775441234" required>
@@ -63,31 +71,9 @@
                 </div>
 
                 <div class="form-group">
-                    <!-- <div style="flex: 1; margin-right: 10px;">
-                        <label for="address">Adresse</label>
-                        <input type="text" id="address" name="address" placeholder="@exemple">
-                    </div> -->
-                    <div class="input-group" style="flex: 1; margin-left: 6px;">
-                        <label for="address" class="label">Adresse</label>
-                        <input autocomplete="off" name="address" id="address" class="input" type="text" placeholder="Dakar, Guediawaye" required>
-                        <div></div>
-                    </div>
-                    <!-- <div style="flex: 1; margin-left: 10px;">
-                        <label for="id_card_number">Numéro de la carte</label>
-                        <input type="text" id="id_card_number" name="id_card_number" placeholder="XDF654648516">
-                    </div> -->
-                    <div class="input-group" style="flex: 1; margin-left: 10px;">
-                        <label for="address" class="label">Numéro Carte d'identité</label>
-                        <input autocomplete="off" name="id_card_number" id="id_card_number" class="input" type="text" placeholder="XDF654648516" required>
-                        <div></div>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="input-group" style="flex: 1; margin-left: 6px;">
                         <label for="address" class="label">Departement</label>
-                        <!-- <input autocomplete="off" name="address" id="address" class="input" type="text" placeholder="Dakar, Guediawaye">
-                        <div></div> -->
+
                         <input list="languages" id="language_id" class="input-datalist" name="departement" required>
                         <datalist id="languages">
                             <option value="Nioro du Rip">Nioro du Rip</option>
@@ -138,11 +124,22 @@
                             <option value="Other">Other</option>
                         </datalist>
                     </div>
-                    <div class="input-group" style="flex: 1; margin-left: 10px;">
-                        <label for="card_number" class="label">Numéro carte</label>
-                        <input autocomplete="off" name="card_number" id="card_number" class="input" type="text" placeholder="OO1" required>
+
+                    <div class="input-group" style="flex: 1; margin-left: 6px;">
+                        <label for="address" class="label">Adresse</label>
+                        <input autocomplete="off" name="address" id="address" class="input" type="text" placeholder="Dakar, Guediawaye" required>
                         <div></div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group" style="flex: 1; margin-left: 10px;">
+                        <label for="address" class="label">Numéro Carte d'électeur</label>
+                        <input autocomplete="off" name="id_card_number" id="id_card_number" class="input" type="text" placeholder="XDF654648516" required>
+                        <div></div>
+                    </div>
+
+
                 </div>
 
 

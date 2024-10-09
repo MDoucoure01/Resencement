@@ -24,6 +24,14 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
+                    <div class="input-group" style="flex: 1; margin-left: 10px;">
+                        <label for="card_number" class="label">Numéro carte</label>
+                        <input value="{{$user->card_number}}" autocomplete="off" name="card_number" id="card_number" class="input" type="text" placeholder="OO1" required>
+                        <div></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="input-group" style="flex: 1; margin-right: 10px;">
                         <label class="label">Nom</label>
                         <input value="{{$user->last_name}}" autocomplete="off" name="last_name" id="last_name" class="input" type="text" placeholder="Ndiaye" required>
@@ -117,6 +125,8 @@
                             <option value="Other">Other</option>
                         </datalist>
                     </div>
+
+
                 </div>
 
 

@@ -10,13 +10,16 @@
         <span class="logo-text">UNITÉ</span>
     </div>
 
+
     <details class="dropdown user-name">
         <!-- <summary role="button">
             <a class="button">Admin</a>
         </summary> -->
+
         <summary role="button">
-            <a class="button">{{ Auth::user()->role }}</a>
+            <a class="button">{{ Auth::user()->last_name }}</a>
         </summary>
+
         <ul>
             <li>
                 <!-- User Info Section -->
@@ -29,6 +32,12 @@
                 </div>
             </li>
             <hr>
+            <li>
+                <a href="{{ route('index.page') }}">
+                    <span class="icon"><img src="{{ asset('assets/images/Assets-UNITE/icons8-accueil.svg') }}" alt="User Image" class="user-img"></span>
+                    Vue d'Ensemble
+                </a>
+            </li>
             <li>
                 <a href="{{ route('userList.page') }}">
                     <span class="icon"><img src="{{ asset('assets/images/Assets-UNITE/ico-user.svg') }}" alt="Delete"></span>
