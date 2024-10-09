@@ -20,6 +20,11 @@
                 @endforeach
             </div>
             @endif
+            @if (session('success'))
+            <div style="color: green; margin-bottom: 10px;margin-bottom: 10px;padding: 15px;background-color: #DFDF;width: 40%;min-width: 200px;">
+                {{ session('success') }}
+            </div>
+            @endif
             <form method="POST" action="{{route('userAdd.page')}}">
                 @csrf
                 <div class="form-group">

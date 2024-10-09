@@ -25,11 +25,11 @@ class ClientsExport implements FromCollection, WithHeadings
             'Nom',
             'Prénom',
             'Téléphone',
-            'Numéro Identité National ',
+            'Numéro Carte Electeur',
             'Adresse',
             'Departement',
             'Genre',
-            'Numéro Carte',
+            'Numéro Carte ',
         ];
     }
 }
