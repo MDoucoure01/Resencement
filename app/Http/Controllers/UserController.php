@@ -197,6 +197,7 @@ class UserController extends Controller
             'address' => $request->input('address'),
             'id_card_number' => $request->input('id_card_number'),
             'departement' => $request->input('departement'),
+            "card_number" => $request->get("card_number"),
         ]);
 
         return redirect()->route('index.page')->with('success', 'Utilisateur mis à jour avec succès.');
