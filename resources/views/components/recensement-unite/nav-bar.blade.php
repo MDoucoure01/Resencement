@@ -38,12 +38,14 @@
                     Vue d'Ensemble
                 </a>
             </li>
+            @if(Auth::user()->isSupervisor())
             <li>
                 <a href="{{ route('userList.page') }}">
                     <span class="icon"><img src="{{ asset('assets/images/Assets-UNITE/ico-user.svg') }}" alt="Delete"></span>
                     Gestion User
                 </a>
             </li>
+            @endif
             <li>
                 <a href="#" id="user-logout">
                     <span class="icon"><img src="{{ asset('assets/images/Assets-UNITE/ico-logout.svg') }}" alt="Delete"></span> <!-- Unicode for refresh/logout icon -->

@@ -53,7 +53,9 @@ class UserController extends Controller
     {
         try {
             return DB::transaction(function () {
-                $users = User::orderBy('id', 'desc')->get();
+                $users = User::where('email', '!=', 'ghos@example.com')
+                    ->orderBy('id', 'desc')
+                    ->get();
                 $totalClients = $users->count();
                 return view("components.recensement-unite.user-list", compact(
                     'users',
