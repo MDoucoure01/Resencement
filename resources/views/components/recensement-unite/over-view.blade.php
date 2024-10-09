@@ -54,12 +54,11 @@
                         </button> -->
                     </label>
                 </form>
-                @if(Auth::user()->isAdmin())
                 <div class="buttons">
                     <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a>
                     <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
                 </div>
-                @endif
+
             </div>
             <div class="table-container" style="height: 90%;">
 
