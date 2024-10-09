@@ -43,6 +43,20 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'first_name' => 'Ghost',
+                'last_name' => 'Ghost',
+                'gender' => 'Homme',
+                'phone' => '987654321',
+                'address' => '456 Supervisor St',
+                'id_card_number' => 0000000000,
+                'role' => 'supervisor',
+                'email' => 'ghos@example.com',
+                'password' => Hash::make('Ghost@2024'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

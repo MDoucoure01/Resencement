@@ -54,12 +54,11 @@
                         </button> -->
                     </label>
                 </form>
-                @if(Auth::user()->isAdmin())
                 <div class="buttons">
                     <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a>
                     <a class="new-btn" href="{{ route('create.page') }}">Nouvelle</a>
                 </div>
-                @endif
+
             </div>
             <div class="table-container" style="height: 90%;">
 
@@ -68,7 +67,7 @@
                         <tr>
                             <th>Nom Complet</th>
                             <th>Sexe</th>
-                            <th>NIN</th>
+                            <th>Carte Electeur</th>
                             <th>Téléphone</th>
                             <th>Numéro Carte</th>
                             <th colspan="2">Action</th>
@@ -237,3 +236,4 @@
 
 
 </x-recensement-unite.layout>
+

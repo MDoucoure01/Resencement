@@ -24,7 +24,7 @@
                         </div>
                     </label>
                 </form>
-                @if(Auth::user()->isAdmin())
+                @if(Auth::user()->isSupervisor())
                 <div class="buttons">
                     <!-- <a href="{{ route('clients.export') }}" class="export-btn">Exporter</a> -->
                     <a class="new-btn" href="{{ route('addUser.page') }}">Nouvelle</a>
