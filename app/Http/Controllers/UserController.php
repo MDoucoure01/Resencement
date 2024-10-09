@@ -129,47 +129,49 @@ class UserController extends Controller
     public function UserAdd(StoreAdminSupervisorRequest $request)
     {
         try {
-            $phone = preg_replace('/\s+/', '', $request->get('phone'));
-            if (!in_array(strlen($phone), [9, 11, 14])) {
-                return back()->withErrors([
-                    'error' => " Le numéro de téléphone doit comporter 9, 11 ou 14 chiffres.",
-                ]);
-            }
-            $cartId = User::where("id_card_number", $request->get('id_card_number'))->first();
-            if ($cartId) {
-                return back()->withErrors([
-                    'error' => " Le numéro de la carte existe deja.",
-                ]);
-            }
-            $phone = User::where("phone", $request->get('phone'))->first();
-            if ($phone) {
-                return back()->withErrors([
-                    'error' => " Le numéro de téléphone existe deja. :" . $request->get("phone"),
-                ]);
-            }
-            if (!in_array($request->get("gender"), ['Homme', 'Femme'])) {
-                return back()->withErrors([
-                    'error' => " Le genre fournie n'est pas conforme.",
-                ]);
-            }
-            if ($request->get('password') !== $request->get('password_confirmation')) {
-                return back()->withErrors(['password' => 'Les mots de passe ne correspondent pas.']);
-            }
+            if (Auth::user()->role == 'supervisor') {
+                $phone = preg_replace('/\s+/', '', $request->get('phone'));
+                if (!in_array(strlen($phone), [9, 11, 14])) {
+                    return back()->withErrors([
+                        'error' => " Le numéro de téléphone doit comporter 9, 11 ou 14 chiffres.",
+                    ]);
+                }
+                $cartId = User::where("id_card_number", $request->get('id_card_number'))->first();
+                if ($cartId) {
+                    return back()->withErrors([
+                        'error' => " Le numéro de la carte existe deja.",
+                    ]);
+                }
+                $phone = User::where("phone", $request->get('phone'))->first();
+                if ($phone) {
+                    return back()->withErrors([
+                        'error' => " Le numéro de téléphone existe deja. :" . $request->get("phone"),
+                    ]);
+                }
+                if (!in_array($request->get("gender"), ['Homme', 'Femme'])) {
+                    return back()->withErrors([
+                        'error' => " Le genre fournie n'est pas conforme.",
+                    ]);
+                }
+                if ($request->get('password') !== $request->get('password_confirmation')) {
+                    return back()->withErrors(['password' => 'Les mots de passe ne correspondent pas.']);
+                }
 
-            $user = User::create([
-                "first_name" => $request->get('first_name'),
-                "last_name" => $request->get("last_name"),
-                "gender" => $request->get('gender'),
-                "phone" => $request->get('phone'),
-                "address" => $request->get('address'),
-                "id_card_number" => $request->get('id_card_number'),
-                "email" => $request->get('email'),
-                "role" => $request->get('role'),
-                "password" => $request->get('password'),
-            ]);
-            return back()->with([
-                'success' => "insertion reussi"
-            ]);
+                $user = User::create([
+                    "first_name" => $request->get('first_name'),
+                    "last_name" => $request->get("last_name"),
+                    "gender" => $request->get('gender'),
+                    "phone" => $request->get('phone'),
+                    "address" => $request->get('address'),
+                    "id_card_number" => $request->get('id_card_number'),
+                    "email" => $request->get('email'),
+                    "role" => $request->get('role'),
+                    "password" => $request->get('password'),
+                ]);
+                return back()->with([
+                    'success' => "insertion reussi"
+                ]);
+            }
         } catch (\Throwable $th) {
             return back()->withErrors([
                 'error' => 'Une erreur est survenue : ',
@@ -244,9 +246,9 @@ class UserController extends Controller
     public function createView()
     {
 
-        if (Auth::user()->role == 'admin') {
-            return view("components.recensement-unite.create");
-        }
+
+        return view("components.recensement-unite.create");
+
         return back()->withErrors([
             'error' => 'Page no found',
         ]);
@@ -256,15 +258,15 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        if (Auth::user()->role == 'admin') {
-            $user = Client::find($id);
-            if ($user) {
-                return view("components.recensement-unite.edit-view", compact('user'));
-            }
-            return back()->withErrors([
-                'error' => 'Page no found',
-            ]);
+
+        $user = Client::find($id);
+        if ($user) {
+            return view("components.recensement-unite.edit-view", compact('user'));
         }
+        return back()->withErrors([
+            'error' => 'Page no found',
+        ]);
+
         return back()->withErrors([
             'error' => 'Page no found',
         ]);
@@ -275,9 +277,9 @@ class UserController extends Controller
 
     public function CreateUser()
     {
-        if (Auth::user()->role == 'admin') {
-            return view("components.recensement-unite.user-add");
-        }
+
+        return view("components.recensement-unite.user-add");
+
         return back()->withErrors([
             'error' => 'Page no found',
         ]);

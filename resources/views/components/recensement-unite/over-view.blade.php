@@ -67,7 +67,7 @@
                         <tr>
                             <th>Nom Complet</th>
                             <th>Sexe</th>
-                            <th>NIN</th>
+                            <th>Carte Electeur</th>
                             <th>Téléphone</th>
                             <th>Numéro Carte</th>
                             <th colspan="2">Action</th>
@@ -236,3 +236,4 @@
 
 
 </x-recensement-unite.layout>
+
