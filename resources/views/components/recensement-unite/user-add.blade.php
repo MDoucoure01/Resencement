@@ -8,7 +8,7 @@
             <div class="back-link">
                 <a href="{{ route('userList.page') }}"><span class="iconReturn">&#8592;</span> Retour à l'accueil</a>
             </div>
-            <div>Nouveau enregistrement</div>
+            <div>Nouveau Utilisateur</div>
         </div>
         <div class="container">
             @if ($errors->any())

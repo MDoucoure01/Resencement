@@ -4,13 +4,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/nav-bar.css') }}">
     @endpush
     <div class="page-title">
-        <h2>Vue Utilisateur</h2>
+        {{-- <h2>Vue Utilisateur</h2> --}}
     </div>
     <div class="container">
 
         <div class="table-section ">
             <div class="table-header">
-                <h3>0{{ $totalClients }} Enregistrements</h3>
+                <h3>0{{ $totalClients }} Utilisateurs</h3>
                 <form class="form">
                     <label for="search">
                         <input required="" autocomplete="off" placeholder="Search" id="search" type="text">
