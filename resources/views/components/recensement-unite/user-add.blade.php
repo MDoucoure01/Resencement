@@ -56,19 +56,6 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="input-group" style="flex: 1; margin-left: 6px;">
-                        <label for="address" class="label">Adresse</label>
-                        <input autocomplete="off" name="address" id="address" class="input" type="text" placeholder="Dakar, Guediawaye" required>
-                        <div></div>
-                    </div>
-                    <div class="input-group" style="flex: 1; margin-left: 10px;">
-                        <label for="address" class="label">Numéro de la carte</label>
-                        <input autocomplete="off" name="id_card_number" id="id_card_number" class="input" type="text" placeholder="XDF654648516" required>
-                        <div></div>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div style="flex: 1; margin-right: 8px;">
                         <label for="role" class="label">Role</label>
                         <select id="role" name="role">

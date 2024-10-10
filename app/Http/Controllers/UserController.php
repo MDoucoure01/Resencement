@@ -82,18 +82,18 @@ class UserController extends Controller
                     'error' => " Le numéro de téléphone doit comporter 9, 11 ou 14 chiffres.",
                 ]);
             }
-            $cartId = Client::where("id_card_number", $request->get('id_card_number'))->first();
-            if ($cartId) {
-                return back()->withErrors([
-                    'error' => " Le numéro de la carte d'identité existe deja.",
-                ]);
-            }
-            $cartId = Client::where("card_number", $request->get('card_number'))->first();
-            if ($cartId) {
-                return back()->withErrors([
-                    'error' => " Le numéro de la carte existe deja.",
-                ]);
-            }
+            // $cartId = Client::where("id_card_number", $request->get('id_card_number'))->first();
+            // if ($cartId) {
+            //     return back()->withErrors([
+            //         'error' => " Le numéro de la carte d'identité existe deja.",
+            //     ]);
+            // }
+            // $cartId = Client::where("card_number", $request->get('card_number'))->first();
+            // if ($cartId) {
+            //     return back()->withErrors([
+            //         'error' => " Le numéro de la carte existe deja.",
+            //     ]);
+            // }
             $phone = Client::where("phone", $request->get('phone'))->first();
             if ($phone) {
                 return back()->withErrors([
@@ -110,10 +110,9 @@ class UserController extends Controller
                 "last_name" => $request->get("last_name"),
                 "gender" => $request->get('gender'),
                 "phone" => $request->get('phone'),
-                "address" => $request->get('address'),
-                "id_card_number" => $request->get('id_card_number'),
-                "department" => $request->get('departement') ?? null,
-                "card_number" => $request->get("card_number") ?? null,
+                // "id_card_number" => $request->get('id_card_number'),
+                // "department" => $request->get('departement') ?? null,
+                // "card_number" => $request->get("card_number") ?? null,
             ]);
             return back()->with([
                 'success' => "insertion reussi"
@@ -136,12 +135,12 @@ class UserController extends Controller
                         'error' => " Le numéro de téléphone doit comporter 9, 11 ou 14 chiffres.",
                     ]);
                 }
-                $cartId = User::where("id_card_number", $request->get('id_card_number'))->first();
-                if ($cartId) {
-                    return back()->withErrors([
-                        'error' => " Le numéro de la carte existe deja.",
-                    ]);
-                }
+                // $cartId = User::where("id_card_number", $request->get('id_card_number'))->first();
+                // if ($cartId) {
+                //     return back()->withErrors([
+                //         'error' => " Le numéro de la carte existe deja.",
+                //     ]);
+                // }
                 $phone = User::where("phone", $request->get('phone'))->first();
                 if ($phone) {
                     return back()->withErrors([
@@ -162,8 +161,8 @@ class UserController extends Controller
                     "last_name" => $request->get("last_name"),
                     "gender" => $request->get('gender'),
                     "phone" => $request->get('phone'),
-                    "address" => $request->get('address'),
-                    "id_card_number" => $request->get('id_card_number'),
+                    // "address" => $request->get('address'),
+                    // "id_card_number" => $request->get('id_card_number'),
                     "email" => $request->get('email'),
                     "role" => $request->get('role'),
                     "password" => $request->get('password'),

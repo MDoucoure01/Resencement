@@ -38,7 +38,6 @@
                         <tr>
                             <th>Nom Complet</th>
                             <th>Sexe</th>
-                            <th>Numéro Carte</th>
                             <th>Téléphone</th>
                             <th>Role</th>
                             <th colspan="2">Action</th>
@@ -54,10 +53,7 @@
                             @if($user->gender == "Femme")
                             <td><span class="" style="background-color:rgba(254, 240, 253, 1);padding:4px;border-radius:3px;">{{ $user->gender }}</span></td>
                             @endif
-                            <td>{{ $user->id_card_number }}</td>
                             <td>{{ $user->phone }}</td>
-
-                            <td hidden> {{ $user->address }}</td>
                             <td><span class="" style="background-color:#0b944649;padding:4px;border-radius:3px;">{{ $user->role }}</span></td>
                             <td style="display: flex;">
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce utlisateur ?');">
@@ -82,7 +78,6 @@
                 <span id="modalUserGender"></span>
                 <p><strong>Numéro Carte:</strong> <span id="modalUserIdCard"></span></p>
                 <p><strong>Téléphone:</strong> <span id="modalUserPhone"></span></p>
-                <p><strong>Adresse:</strong> <span id="modalUserAddress"></span></p>
             </div>
         </div>
 
@@ -101,14 +96,12 @@
             const modalUserGender = document.getElementById('modalUserGender');
             const modalUserIdCard = document.getElementById('modalUserIdCard');
             const modalUserPhone = document.getElementById('modalUserPhone');
-            const modalUserAddress = document.getElementById('modalUserAddress');
 
             function showModal(user) {
                 modalUserName.textContent = user.name;
                 modalUserGender.textContent = user.gender;
                 modalUserIdCard.textContent = user.idCard;
                 modalUserPhone.textContent = user.phone;
-                modalUserAddress.textContent = user.address;
 
                 if (user.gender === 'Homme') {
                     modalUserGender.textContent = user.gender;
@@ -130,14 +123,12 @@
                     const userGender = row.querySelector('td:nth-child(2)').textContent;
                     const userIdCard = row.querySelector('td:nth-child(3)').textContent;
                     const userPhone = row.querySelector('td:nth-child(4)').textContent;
-                    const userAddress = row.querySelector('td:nth-child(5)').textContent;
 
                     const user = {
                         name: userName,
                         gender: userGender,
                         idCard: userIdCard,
                         phone: userPhone,
-                        address: userAddress,
                     };
 
                     showModal(user);
