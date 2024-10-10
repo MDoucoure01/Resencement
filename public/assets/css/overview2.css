@@ -84,6 +84,9 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 15px;
 }
 
 .table-header h3 {
@@ -283,12 +286,13 @@ p,
     /*  when rotating changed icon color */
     --height: 40px;
     /*  height */
-    width: 200px;
+    max-width: 350px;
     padding-inline-end: 0.2em;
     /*  change this for padding in the end of input */
     background: var(--input-bg);
     border-radius: 4px;
     box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
 }
 
 .form label {
@@ -388,4 +392,11 @@ p,
     visibility: visible;
     transform: scale(1);
     transition: 0s;
+}
+
+@media (max-width:600px) {
+    .buttons button,
+    .buttons a {
+        margin-left: 0px;
+    }
 }
