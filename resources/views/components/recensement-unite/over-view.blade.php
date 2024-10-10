@@ -65,18 +65,21 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nom Complet</th>
+                            <th>Numéro Carte</th>
+                            <th>Nom </th>
+                            <th>Prenom </th>
                             <th>Sexe</th>
                             <th>Carte Electeur</th>
                             <th>Téléphone</th>
-                            <th>Numéro Carte</th>
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($users as $user)
                         <tr style="cursor: pointer;">
-                            <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                            <td>{{ $user->card_number}}</td>
+                            <td>{{ $user->last_name }}</td>
+                            <td>{{ $user->first_name }}</td>
                             @if($user->gender == "Homme")
                             <td><span class="" style="background-color:rgba(240, 241, 254, 1);padding:4px;border-radius:3px;">{{ $user->gender }}</span></td>
                             @endif
@@ -87,7 +90,6 @@
                             <td>{{ $user->phone }}</td>
                             <td hidden> {{ $user->address }}</td>
                             <td hidden> {{ $user->department }}</td>
-                            <td>{{ $user->card_number}}</td>
                             <td style="display: flex;">
                                 <form action="{{ route('clients.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?');">
                                     @csrf
@@ -97,7 +99,7 @@
                                     </button>
                                 </form>
                                 <a style="margin-left: 20px;" href="{{ route('users.edit', $user->id) }}" class="edit-btn">
-                                    <img src="{{ asset('assets/images/Assets-UNITE/ico-edit.svg') }}" alt="Edit"
+                                    <img src="{{ asset('assets/images/Assets-UNITE/ico-edit.svg') }}" alt="Edit">
                                         </a>
                             </td>
                         </tr>
@@ -164,13 +166,13 @@
 
             rows.forEach(row => {
                 row.addEventListener('click', function() {
-                    const userName = row.querySelector('td:nth-child(1)').textContent;
-                    const userGender = row.querySelector('td:nth-child(2)').textContent;
-                    const userIdCard = row.querySelector('td:nth-child(3)').textContent;
-                    const userPhone = row.querySelector('td:nth-child(4)').textContent;
-                    const userAddress = row.querySelector('td:nth-child(5)').textContent;
-                    const userDepartement = row.querySelector('td:nth-child(6)').textContent;
-                    const userCard = row.querySelector('td:nth-child(7)').textContent;
+                    const userName = row.querySelector('td:nth-child(2)').textContent;
+                    const userGender = row.querySelector('td:nth-child(4)').textContent;
+                    const userIdCard = row.querySelector('td:nth-child(5)').textContent;
+                    const userPhone = row.querySelector('td:nth-child(6)').textContent;
+                    const userAddress = row.querySelector('td:nth-child(7)').textContent;
+                    const userDepartement = row.querySelector('td:nth-child(8)').textContent;
+                    const userCard = row.querySelector('td:nth-child(1)').textContent;
 
                     const user = {
                         name: userName,

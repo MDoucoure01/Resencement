@@ -38,10 +38,12 @@ form{
 .form-group {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .input-group {
     width: 45%;
+    min-width: 250px;
 }
 
 .form-group label {
@@ -67,6 +69,7 @@ form{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    min-width: 200px;
 }
 
 .submit-container {
@@ -157,7 +160,7 @@ form{
 
 @media (max-width: 600px) {
     .entete,.container {
-        width: 95%;
+        width: 90%;
         padding:10px;
     }
 }

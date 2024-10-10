@@ -16,20 +16,20 @@ class ClientsExport implements FromCollection, WithHeadings
     public function collection()
     {
         // return Client::all()->makeHidden(['create_at','update_at']);
-        return Client::select('first_name', 'last_name', 'phone', 'id_card_number', 'address', 'department', 'gender', 'card_number')->get();
+        return Client::select('card_number', 'first_name', 'last_name', 'phone', 'id_card_number', 'address', 'department', 'gender')->get();
     }
 
     public function headings(): array
     {
         return [
+            'Numéro Carte ',
             'Nom',
             'Prénom',
             'Téléphone',
             'Numéro Carte Electeur',
             'Adresse',
             'Departement',
-            'Genre',
-            'Numéro Carte ',
+            'Genre'
         ];
     }
 }
