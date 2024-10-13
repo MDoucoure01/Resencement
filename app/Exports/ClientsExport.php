@@ -23,8 +23,8 @@ class ClientsExport implements FromCollection, WithHeadings
     {
         return [
             'Numéro Carte ',
-            'Nom',
             'Prénom',
+            'Nom',
             'Téléphone',
             'Numéro Carte Electeur',
             'Adresse',
