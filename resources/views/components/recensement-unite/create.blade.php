@@ -40,15 +40,16 @@
 
                 <div class="form-group">
 
-                    <div class="input-group" style="flex: 1; margin-right: 10px;">
-                        <label class="label">Nom</label>
-                        <input autocomplete="off" name="last_name" id="last_name" class="input" type="text" placeholder="Ndiaye" required>
-                        <div></div>
-                    </div>
-
+                    
                     <div class="input-group" style="flex: 1; margin-left: 10px;">
                         <label class="label">Prénom</label>
                         <input autocomplete="off" name="first_name" id="first_name" class="input" type="text" placeholder="Fallou" required>
+                        <div></div>
+                    </div>
+                    
+                    <div class="input-group" style="flex: 1; margin-right: 10px;">
+                        <label class="label">Nom</label>
+                        <input autocomplete="off" name="last_name" id="last_name" class="input" type="text" placeholder="Ndiaye" required>
                         <div></div>
                     </div>
                 </div>

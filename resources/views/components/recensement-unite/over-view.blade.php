@@ -66,8 +66,8 @@
                     <thead>
                         <tr>
                             <th>Numéro Carte</th>
-                            <th>Nom </th>
                             <th>Prenom </th>
+                            <th>Nom </th>
                             <th>Sexe</th>
                             <th>Carte Electeur</th>
                             <th>Téléphone</th>
@@ -78,8 +78,8 @@
                         @foreach($users as $user)
                         <tr style="cursor: pointer;">
                             <td>{{ $user->card_number}}</td>
-                            <td>{{ $user->last_name }}</td>
                             <td>{{ $user->first_name }}</td>
+                            <td>{{ $user->last_name }}</td>
                             @if($user->gender == "Homme")
                             <td><span class="" style="background-color:rgba(240, 241, 254, 1);padding:4px;border-radius:3px;">{{ $user->gender }}</span></td>
                             @endif

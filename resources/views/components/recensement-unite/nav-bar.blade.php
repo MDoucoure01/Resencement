@@ -17,7 +17,7 @@
         </summary> -->
 
         <summary role="button">
-            <a class="button">{{ Auth::user()->last_name }}</a>
+            <a class="button">{{ Auth::user()->first_name }}</a>
         </summary>
 
         <ul>
